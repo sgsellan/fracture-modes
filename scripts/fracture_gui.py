@@ -51,11 +51,12 @@ v_fine = v
 f_fine = f
 v, f = gpytoolbox.lazy_cage(v_fine,f_fine,num_faces=face_num,grid_size = gs)
 ind = 0
-threshold = 0.05
+threshold = 10
 now = datetime.now()
 dt_string = now.strftime("_%d_%m_%H_%M")
 base=os.path.basename(filename)
 write_obj_name =  os.path.splitext(base)[0] + dt_string + ".obj"
+write_modes_name = os.path.splitext(base)[0]
 
 ps.init()
 ps.set_ground_plane_mode("none")
@@ -96,6 +97,11 @@ def callback():
         computed_modes = True
         modes_text = "Computed modes"
         t = 0.0
+
+
+    if computed_modes:
+        if (psim.Button("Write segmented modes")):
+            modes.write_segmented_modes(write_modes_name)
 
     psim.Text(modes_text)
     if(psim.Button("Show modes")):

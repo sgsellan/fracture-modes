@@ -230,7 +230,7 @@ class fracture_modes:
         self.impact_precomputed = True
 
 
-    def impact_projection(self,contact_point=None,threshold=0.02,wave=True,direction=np.array([1]),impact=None,project_on_modes=True,num_modes_used = None):
+    def impact_projection(self,contact_point=None,threshold=0.02,wave=True,direction=np.array([1]),impact=None,project_on_modes=False,num_modes_used = None):
         if (num_modes_used is None):
             num_modes_used = self.modes.shape[1]
         # This is the code we will run on runtime, when an impact is detected. Anything that can be precomputed has been precomputed, we should only do what strictly needs impact details here for efficiency
