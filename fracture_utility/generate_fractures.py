@@ -85,6 +85,7 @@ def generate_fractures(input_dir,num_modes=20,num_impacts=80,output_dir=None,ver
 
         t40 = time.time()
         # Loop to generate many possible fractures
+        all_labels = np.zeros((modes.precomputed_num_pieces,num_impacts),dtype=int)
         running_num = 0
         for i in range(P.shape[0]):
             t400 = time.time()
@@ -92,7 +93,10 @@ def generate_fractures(input_dir,num_modes=20,num_impacts=80,output_dir=None,ver
             t401 = time.time()
             # if verbose:
             #     print("Impact simulation: ",round(t401-t400,3),"seconds.")
-            if (modes.n_pieces_after_impact>1 and modes.n_pieces_after_impact<100):
+            new = not (modes.piece_labels_after_impact.tolist() in all_labels.T.tolist())
+            #print(modes.piece_labels_after_impact.tolist() in all_labels.T.tolist())
+            if (modes.n_pieces_after_impact>1 and modes.n_pieces_after_impact<100 and new):
+                all_labels[:,running_num] = modes.piece_labels_after_impact
                 write_output_name = os.path.join(output_dir,"fractured_") +  str(running_num)
                 running_num = running_num + 1
                 if not os.path.exists(write_output_name):
@@ -106,6 +110,7 @@ def generate_fractures(input_dir,num_modes=20,num_impacts=80,output_dir=None,ver
                 #     print("Writing: ",round(t402-t401,3),"seconds.")
             if running_num >= num_impacts:
                 break
+        #print(all_labels)
         t41 = time.time()
         impact_time = t41-t40
         if verbose:
