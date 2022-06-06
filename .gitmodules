@@ -1,3 +1,6 @@
 [submodule "ext/gpytoolbox"]
 	path = ext/gpytoolbox
 	url = git@github.com:sgsellan/gpytoolbox.git
+[submodule "gpytoolbox"]
+	path = gpytoolbox
+	url = git@github.com:sgsellan/gpytoolbox.git
