@@ -23,6 +23,7 @@ from .fracture_modes import fracture_modes
 def generate_fractures(input_dir,num_modes=20,num_impacts=80,output_dir=None,verbose=True,compressed=True):
 
     # directory = os.fsencode(input_dir)
+    np.random.seed(0)
     
     # for file in os.listdir(directory):
     filename = input_dir
