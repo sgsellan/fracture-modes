@@ -1,13 +1,13 @@
 # Fracture Modes for Realtime Destruction
 
-This is the code accompanying the paper ["Fracture Modes for Realtime Destruction"](https://www.silviasellan.com/data/pdf/fracture-harmonics-preprint.pdf), by Silvia Sellán, Jack Luong, Leticia Mattos Da Silva,
+This is the code accompanying the *Transactions on Graphics* paper ["Breaking Good: Fracture Modes for Realtime Destruction"](https://www.silviasellan.com/data/pdf/fracture-harmonics.pdf), by Silvia Sellán, Jack Luong, Leticia Mattos Da Silva,
 Aravind Ramakrishnan, Yuchuan Yang and Alec Jacobson.
 
 ## Installation
 
 To install this library, start by cloning this repository 
 ```bash
-git clone --recursive git@github.com:sgsellan/fracture-modes.git
+git clone --recursive https://github.com/sgsellan/fracture-modes.git
 ```
 Then, navigate to `gpytoolbox`:
 ```bash
