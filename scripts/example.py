@@ -33,3 +33,4 @@ new_contact_point = nodes[5,:]
 modes.impact_projection(contact_point=new_contact_point,direction=direction)
 # Write segmented output to obj
 modes.write_segmented_output("output.obj")
+print("Example ran successfully!")

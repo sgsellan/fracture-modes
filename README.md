@@ -9,38 +9,51 @@ To install this library, start by cloning this repository
 ```bash
 git clone --recursive https://github.com/sgsellan/fracture-modes.git
 ```
+Create a [`conda` environment](https://docs.conda.io/projects/conda/en/latest/index.html) using numpy
+```bash
+conda create -n fracture-modes python=3.9
+conda activate fracture-modes
+conda install numpy
+```
 Then, navigate to `gpytoolbox`:
 ```bash
 cd ext/gpytoolbox/
 ```
 and compile the dependency:
-```
+```bash
 mkdir build
 cd build
 cmake ..
-make
+make -j8
 ```
-
-This code also depends on libigl's [python bindings](https://libigl.github.io/libigl-python-bindings/), which one can install with
+Return to the main directory:
+```bash
+cd ../../..
+```
+and install all other dependencies:
 ```bash
 conda install -c conda-forge igl
-```
-and, to run examples, on `tetgen`, which one can install with
-```bash
 pip install tetgen
-```
-and on `polyscope`, which you can install with
-```bash
 python -m pip install polyscope
+conda install -c conda-forge scikit-sparse
+pip install scikit-image
+```
+Finally, obtain a (free if you're academic) mosek licence [here](https://www.mosek.com/products/academic-licenses/), and install it as a python package:
+```bash
+conda install -c mosek mosek
 ```
 
-This code also depends on `mosek`. You can download it and get a (free) academic licence [here](https://www.mosek.com/products/academic-licenses/).
+You can validate your installation by running 
+```bash
+python scripts/example.py
+``` 
+which should complete in around 15 seconds and return a verbose wall of text ending with "Example ran successfully!"
 
-Once this is done, you can use this library by adding this repository to your python path and importing `fracture_utility`.
+Once this is done, 
 
 ## Use
 
-The following sample code will load a mesh and compute its fracture modes (see `scripts/example.py`):
+You can use this library by adding this repository to your python path and importing `fracture_utility`. The following sample code will load a mesh and compute its fracture modes (see `scripts/example.py`):
 
 ```python
 import numpy as np
