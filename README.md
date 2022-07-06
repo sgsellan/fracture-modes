@@ -116,3 +116,7 @@ Optionally, you can now press on "Save segmented output" to write the fine outpu
 ## Known Issues
 
 Please do not hesitate to [contact me](sgsellan@cs.toronto.edu) if you find any issues or bugs in this code, or you struggle to run it in any way.
+
+## Licensing
+
+This code is released free for academic, non-commercial, non-military use. Contact [the authors](mailto:sgsellan@cs.toronto.edu) for commercial usage licensing.
