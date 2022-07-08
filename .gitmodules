@@ -1,6 +1,3 @@
-[submodule "gpytoolbox"]
-	path = gpytoolbox
-	url = git@github.com:sgsellan/gpytoolbox.git
 [submodule "ext/gpytoolbox"]
 	path = ext/gpytoolbox
 	url = https://github.com/sgsellan/gpytoolbox.git
