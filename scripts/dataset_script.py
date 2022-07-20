@@ -9,4 +9,6 @@ if len(sys.argv)>1:
 
 output_dir = os.path.splitext(os.path.basename(filename))[0]
 
-fracture.generate_fractures(filename,output_dir=output_dir,verbose=True)
+fracture.generate_fractures(filename,output_dir=output_dir,verbose=True,compressed=False,cage_size=5000)
+
+# Check fracture 18
