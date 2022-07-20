@@ -93,7 +93,7 @@ def generate_fractures(input_dir,num_modes=20,num_impacts=80,output_dir=None,ver
     for i in range(P.shape[0]):
         t400 = time.time()
         modes.impact_projection(contact_point=P[i,:],direction=np.array([1.0]),threshold=sigmas[i],num_modes_used=20)
-        min_volume = total_vol/(50*modes.n_pieces_after_impact)
+        min_volume = total_vol/(40*modes.n_pieces_after_impact)
         current_min_volume = total_vol
         for i in range(modes.n_pieces_after_impact):
             current_min_volume = min(current_min_volume,np.sum(vols[modes.tet_labels_after_impact==i]))
