@@ -1,4 +1,4 @@
-# Fracture Modes for Realtime Destruction
+# Breaking Good: Fracture Modes for Realtime Destruction
 
 This is the code accompanying the *Transactions on Graphics* paper ["Breaking Good: Fracture Modes for Realtime Destruction"](https://www.silviasellan.com/pdf/papers/fracture-harmonics.pdf), by Silvia Sellán, Jack Luong, Leticia Mattos Da Silva,
 Aravind Ramakrishnan, Yuchuan Yang and Alec Jacobson.
