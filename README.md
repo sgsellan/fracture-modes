@@ -1,7 +1,7 @@
 # Breaking Good: Fracture Modes for Realtime Destruction
 
 This is the code accompanying the *Transactions on Graphics* paper ["Breaking Good: Fracture Modes for Realtime Destruction"](https://www.silviasellan.com/pdf/papers/fracture-harmonics.pdf), by Silvia Sellán, Jack Luong, Leticia Mattos Da Silva,
-Aravind Ramakrishnan, Yuchuan Yang and Alec Jacobson.
+Aravind Ramakrishnan, Yuchuan Yang and Alec Jacobson and the *NeurIPS Datasets & Benchmarks 2022* paper ["Breaking Bad: A Dataset for Geometric Fracture and Reassembly"](https://breaking-bad-dataset.github.io) by Silvia Sellán, Yun-Chun Chen, Ziyi Wu, Animesh Garg and Alec Jacobson.
 
 ## Installation
 
@@ -33,7 +33,7 @@ which should complete in around 15 seconds and return a verbose wall of text end
 
 Once this is done, 
 
-## Use
+## Use for fracture simulation
 
 You can use this library by adding this repository to your python path and importing `fracture_utility`. The following sample code will load a mesh and compute its fracture modes (see `scripts/example.py`):
 
@@ -41,12 +41,13 @@ You can use this library by adding this repository to your python path and impor
 import numpy as np
 import igl
 import fracture_utility as fracture
+from gpytoolbox.copyleft import lazy_cage
 
 # This is the "fine mesh", i.e. the mesh we use for rendering
 v_fine, f_fine = igl.read_triangle_mesh("data/bunny_oded.obj")
 v_fine = gpytoolbox.normalize_points(v_fine)
 # This is the "cage mesh", i.e. the coarser mesh that we will tetrahedralize and use for the physical simulation
-v, f = gpytoolbox.lazy_cage(v_fine,f_fine,num_faces=100)
+v, f = lazy_cage(v_fine,f_fine,num_faces=100)
 # Tetrahedralize
 tgen = tetgen.TetGen(v,f)
 nodes, elements =  tgen.tetrahedralize()
@@ -94,6 +95,28 @@ Then, you can go to "Impact Mode", and click "Generate Random Impact". Three mes
 ![](assets/screencap3.png)
 
 Optionally, you can now press on "Save segmented output" to write the fine output to an `.obj` file. See `assets/sample_use.mp4` for a full recorded GUI example.
+
+## Use for fracture dataset generation
+
+As shown in our paper ["Breaking Bad: A Dataset for Geometric Fracture and Reassembly"](https://breaking-bad-dataset.github.io), our code can also be used to simulate many fractures for a specific object. The documented funcionality necessary to replicate our dataset generation can be found inside the `fracture_utility/generate_fractures.py` function. An example use can be found in the `scripts/example_dataset_generation.py` script:
+
+```python
+# Load dependencies
+import fracture_utility as fracture
+import sys
+import os
+# Read input mesh
+filename = "data/bunny_oded.obj"
+if len(sys.argv)>1:
+    filename = sys.argv[1]
+
+# Choose output directory
+output_dir = os.path.splitext(os.path.basename(filename))[0]
+
+# Call dataset generation without volume constraint and with a 5000 cage size.
+fracture.generate_fractures(filename,output_dir=output_dir,verbose=True,compressed=False,cage_size=5000,volume_constraint=0.00)
+```
+
 
 ## Known Issues
 
