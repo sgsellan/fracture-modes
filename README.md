@@ -9,34 +9,16 @@ To install this library, start by cloning this repository
 ```bash
 git clone --recursive https://github.com/sgsellan/fracture-modes.git
 ```
-Create a [`conda` environment](https://docs.conda.io/projects/conda/en/latest/index.html) using numpy
+Create a [`conda` environment](https://docs.conda.io/projects/conda/en/latest/index.html)
 ```bash
 conda create -n fracture-modes python=3.9
 conda activate fracture-modes
-conda install numpy
 ```
-Then, navigate to `gpytoolbox`:
+Then, install all dependencies:
 ```bash
-cd ext/gpytoolbox/
-```
-and compile the dependency:
-```bash
-mkdir build
-cd build
-cmake ..
-make -j8
-```
-Return to the main directory:
-```bash
-cd ../../..
-```
-and install all other dependencies:
-```bash
+python -m pip install -r requirements.txt
 conda install -c conda-forge igl
-pip install tetgen
-python -m pip install polyscope
 conda install -c conda-forge scikit-sparse
-pip install scikit-image
 ```
 Finally, obtain a (free if you're academic) mosek licence [here](https://www.mosek.com/products/academic-licenses/), and install it as a python package:
 ```bash

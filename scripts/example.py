@@ -5,12 +5,13 @@ import tetgen
 # Include my own general functionality
 from context import fracture_utility as fracture
 from context import gpytoolbox
+from gpytoolbox.copyleft import lazy_cage
 
 # This is the "fine mesh", i.e. the mesh we use for rendering
 v_fine, f_fine = igl.read_triangle_mesh("data/bunny_oded.obj")
 v_fine = gpytoolbox.normalize_points(v_fine)
 # This is the "cage mesh", i.e. the coarser mesh that we will tetrahedralize and use for the physical simulation
-v, f = gpytoolbox.lazy_cage(v_fine,f_fine,num_faces=2000)
+v, f = lazy_cage(v_fine,f_fine,num_faces=2000)
 
 tgen = tetgen.TetGen(v,f)
 nodes, elements =  tgen.tetrahedralize()

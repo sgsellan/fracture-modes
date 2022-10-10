@@ -14,8 +14,7 @@ from .tictoc import tic,toc
 
 import sys
 import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../ext/gpytoolbox')))
-import gpytoolbox
+from gpytoolbox.copyleft import mesh_boolean
 
 # TODO: CHECK I DIDN'T BREAK 3D MODES
 # TODO: Write unit tests for all dimensions and boolean options
@@ -176,17 +175,18 @@ class fracture_modes:
 
         if(v_fine is not None):
             # If we want to alleviate the effect of mesh dependency, we can use a post-facto smoothing combined with upper envelope extraction
-            if upper_envelope:
-            # We convert our per-tet labels into "material densities"
-                LT_elements = np.zeros((self.elements.shape[0],self.precomputed_num_pieces))
-                for i in range(self.precomputed_num_pieces):
-                    LT_elements[self.all_modes_labels==i,i] = 1.0
-                # Convert per-tet material densities into per-vertex material densities
-                LT = blur_onto_vertices(self.elements,LT_elements)
-                # Smooth the densities     
-                LT = spsolve(eye(self.vertices.shape[0]) - smoothing_lambda*igl.cotmatrix(self.vertices,self.elements),LT)
-                # Extract upper envelopes
-                u, g, l = gpytoolbox.upper_envelope(self.vertices,self.elements,LT)
+            # This is unsupported now because we still need to port the upper envelope code to gpytoolbox.
+            # if upper_envelope:
+            # # We convert our per-tet labels into "material densities"
+            #     LT_elements = np.zeros((self.elements.shape[0],self.precomputed_num_pieces))
+            #     for i in range(self.precomputed_num_pieces):
+            #         LT_elements[self.all_modes_labels==i,i] = 1.0
+            #     # Convert per-tet material densities into per-vertex material densities
+            #     LT = blur_onto_vertices(self.elements,LT_elements)
+            #     # Smooth the densities     
+            #     LT = spsolve(eye(self.vertices.shape[0]) - smoothing_lambda*igl.cotmatrix(self.vertices,self.elements),LT)
+            #     # Extract upper envelopes
+            #     u, g, l = gpytoolbox.upper_envelope(self.vertices,self.elements,LT)
 
 
             # All this loop is doing is convert each coarse mesh piece into a triangle mesh, intersect it by the fine mesh, save that as a fine mesh piece, and keep track of indeces to get an index-to-fine mapping
@@ -204,7 +204,7 @@ class fracture_modes:
                     fi = boundary_faces_fixed(ti)
                     fi = fi[:,[1,0,2]] #libigl uses different ordering!??
                 # This should be replaced by a call to igl.mesh_booleans once the official binding is published
-                vi_fine, fi_fine = gpytoolbox.mesh_intersection(v_fine,f_fine.astype(np.int32),vi,fi.astype(np.int32))
+                vi_fine, fi_fine = mesh_boolean(v_fine,f_fine.astype(np.int32),vi,fi.astype(np.int32),boolean_type='intersection')
                 fine_piece_vertices.append(vi_fine.copy())
                 fine_piece_triangles.append(fi_fine + running_n)
                 running_n = running_n + vi_fine.shape[0]
