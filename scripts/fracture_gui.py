@@ -12,7 +12,7 @@ from context import fracture_utility as fracture
 from context import gpytoolbox
 from context import sys
 
-
+from gpytoolbox.copyleft import lazy_cage
 
 
 filename = "data/bunny_oded.obj"
@@ -49,7 +49,7 @@ face_num = 2000
 gs = 50
 v_fine = v
 f_fine = f
-v, f = gpytoolbox.lazy_cage(v_fine,f_fine,num_faces=face_num,grid_size = gs)
+v, f = lazy_cage(v_fine,f_fine,num_faces=face_num,grid_size = gs)
 ind = 0
 threshold = 10
 now = datetime.now()
@@ -146,7 +146,7 @@ def callback():
 
     changed, face_num = psim.InputInt("Faces in cage", face_num)
     if changed:
-        v, f = gpytoolbox.lazy_cage(v_fine,f_fine,num_faces=face_num,grid_size = gs)
+        v, f = lazy_cage(v_fine,f_fine,num_faces=face_num,grid_size = gs)
         ps_cage = ps.register_surface_mesh("cage mesh", v, f)
         ps_cage.set_transparency(0.4)
 
