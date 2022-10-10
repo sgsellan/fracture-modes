@@ -97,7 +97,7 @@ Then, you can go to "Impact Mode", and click "Generate Random Impact". Three mes
 Optionally, you can now press on "Save segmented output" to write the fine output to an `.obj` file. See `assets/sample_use.mp4` for a full recorded GUI example.
 
 <!----><a name="dataset"></a>
-## Use for fracture dataset generation
+## [dataset] Use for fracture dataset generation
 
 As shown in our paper ["Breaking Bad: A Dataset for Geometric Fracture and Reassembly"](https://breaking-bad-dataset.github.io), our code can also be used to simulate many fractures for a specific object. The documented funcionality necessary to replicate our dataset generation can be found inside the `fracture_utility/generate_fractures.py` function. An example use can be found in the `scripts/example_dataset_generation.py` script:
 
