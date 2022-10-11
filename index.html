@@ -2,59 +2,65 @@
 <html>
 <head>
 	<meta charset="utf-8"/>
-	<title>TEST WEBSITE</title>
-	<meta name="author" content="Silvia Sellán, Noam Aigerman, Alec Jacobson"/>
-<meta property="og:image" content="http://www.dgp.toronto.edu/projects/overlapping/lucy.jpg" />
+	<title>Breaking Good: Fracture Modes for Realtime Destruction</title>
+	<meta name="author" content="Silvia Sellán, Jack Luong, Leticia Mattos Da Silva, Aravind Ramakrishnan, Yuchuan Yang, Alec Jacobson"/>
+<meta property="og:image" content="modes-vs-modes.jpg" />
 <meta property="og:description" content="..." />
 <meta name="twitter:card" content="summary"></meta>
-<meta name="og:title" content="Developability of Heightfields via Rank Minimization"></meta>
+<meta name="og:title" content="Breaking Good: Fracture Modes for Realtime Destruction"></meta>
 	<link type="text/css" rel="stylesheet" href="style.css"/>
 </head>
+<style>
+	.authors {line-height:5px;}
+</style>
 <body>
 
-<h1 id="developabilityofheightfieldsviarankminimization:siggraph2020">Developability of Heightfields via Rank Minimization <em> SIGGRAPH 2020</em></h1>
+<h1 id="breakinggood:siggraphasia2022">Breaking Good: Fracture Modes for Realtime Destruction <em> SIGGRAPH Asia 2022</em></h1>
 <div class=authors>
-<p>SILVIA SELLÁN<sup>1</sup>, ARAVIND RAMAKRISHNAN<sup>1</sup>, ..., ALEC JACOBSON<sup>1,</sup><sup>2</sup></p><center><p><sup>1</sup>University of Toronto, <sup>2</sup>Adobe Research</p></center>
+<p>SILVIA SELLÁN<sup>1</sup>, JACK LUONG<sup>2,3</sup>,LETICIA MATTOS DA SILVA<sup>3,4</sup></p><p>ARAVIND RAMAKRISHNAN<sup>1,5</sup>, YUCHUAN YANG<sup>3</sup>, ALEC JACOBSON<sup>1,6</sup></p>
+<br>
+<center><p><sup>1</sup>University of Toronto, <sup>2</sup>CSU Fresno, <sup>3</sup>UCLA, <sup>4</sup>MIT, <sup>5</sup>University of Maryland, <sup>6</sup>Adobe Research</p></center>
 </div>
 
 <figure>
-<img src="lucy.jpg" alt="" />
-<caption>
-  Our method, inspired by compressed sensing and the problem of rank minimization, takes as input a heightfield describing a surface (left) and outputs a heightfield describing a piecewise developable surface (right) which approximates the input. 3D model by Lloyd Chidgzey under CC BY-SA 3.0.</caption>
+<img src="modes-vs-modes.jpg" alt="" />
 </figure>
-
 
 
 <h2 id="abstract">Abstract</h2>
 
-<p>This work concerns the computation and approximation of developable surfaces — surfaces that are locally isometric to the two-dimensional plane. These surfaces are heavily studied in differential geometry, and are also of great interest to fabrication, architecture and fashion. We focus specifically on developability of heightfields. Our main observation is that developability can be cast as a rank constraint, which can then be plugged into theoretically-grounded rank-minimization techniques from the field of compressed sensing. This leads to a convex semidefinite optimization problem, which receives an input heightfield and recovers a similar heightfield which is developable. Due to the sparsifying nature of compressed sensing, the recovered surface is piecewise developable, with creases emerging between connected developable pieces. The convex program includes one user-specified parameter, balancing adherence to the original surface with developability and number of patches. We moreover show, that in contrast to previous techniques, our discretization does not introduce a bias and the same results are achieved across resolutions and orientations, and with no limit on the number of creases and patches. We solve this convex semidefinite optimization problem efficiently, by devising a tailor-made ADMM solver which leverages matrix-projection observations unique to our problem. We employ our method on a plethora of experiments, from denoising 3D scans of developable geometry such as documents and buildings, through approximating general heightfields with developable ones, and up to interpolating sparse annotations with a developable heightfield.</p>
+<p>Drawing a direct analogy with the well-studied vibration or elastic modes, we introduce an object's fracture modes, which constitute its preferred or most natural ways of breaking. We formulate a sparsified eigenvalue problem, which we solve iteratively to obtain the n lowest-energy modes. These can be precomputed for a given shape to obtain a prefracture pattern that can substitute the state of the art for realtime applications at no runtime cost but significantly greater realism. Furthermore, any realtime impact can be projected onto our modes to obtain impact-dependent fracture patterns without the need for any online crack propagation simulation. We not only introduce this theoretically novel concept, but also show its fundamental and practical advantages in a diverse set of examples and contexts.</p>
 
 <h2 id="downloads">Downloads</h2>
 
 <ul>
-<li><a href="compressed-developables.pdf">Paper</a></li>
-<li><a
-	    href="http://dgp.toronto.edu/~sgsellan/pdf/compressed-developables-low-res.pdf">Paper (low res)</a></li>
-<li><a href="https://dl.acm.org/doi/10.1145/3386569.3392419">Paper (ACM Digital Library)</a></li>
-<li><a href="https://github.com/sgsellan/developability-of-heightfields">Code</a></li>
-<li><a href="https://www.youtube.com/watch?v=mfJB7ehxWPY&feature=youtu.be">Talk
+<li><a href="fracture-harmonics.pdf">Paper</a></li>
+<li><a href="https://github.com/sgsellan/fracture-modes">Code</a></li>
+<li><a href="https://youtu.be/0k_tEk34nJQ">Video
 	(English CC)</a></li>
 </ul>
 
 <h2 id="bibtex">BibTeX</h2>
 
-<pre><code>@article{Sellan:Developability:2020,
-  title = {Developability of Heightfields via Rank Minimization},
-  author = {Silvia Sellán and Noam Aigerman and Alec Jacobson},
-  year = {2020},
-  journal = {ACM Transactions on Graphics},
+<pre><code>@article{Sellan:Breaking:2022,
+  title = {Breaking Good: Fracture Modes for Realtime Destruction},
+  author = {Silvia Sellán and Jack Luong and 
+	Leticia Mattos Da Silva and Aravind Ramakrishnan and 
+	Yuchuan Yang and Alec Jacobson},
+  year = {2022},
+  journal = {ACM Transactions on Graphics}
 }
 </code></pre>
 
 <h2 id="acknowledgements">Acknowledgements</h2>
 
 <p>
-This project is funded in part by NSERC Discovery (RGPIN2017–05235, RGPAS–2017–507938), New Frontiers of Research Fund (NFRFE–201), the Ontario Early Research Award program, the Canada Research Chairs Program, the Fields Centre for Quantitative Analysis and Modelling and gifts by Adobe Systems, Autodesk and MESH Inc. We thank Mirela Ben-Chen, Oded Stein and Derek Liu for their insightful conversation and advice; Herng Yi Cheng and Abhishek Madan for producing origami examples; Wenzheng Chen for his help with the 3D scanner setup in Fig. 10; Josh Holinaty, Naseem Hrab and Owlkids for allowing us to use their book in Fig. 3; and Honglin Chen, John Kanji, Ruiqi Wang and Rahul Arora for proofreading.
+This project is funded in part by NSERC Discovery (RGPIN2017–05235, RGPAS–2017–507938), New Frontiers of Research Fund (NFRFE–201), the Ontario Early Research Award program, the Canada Research Chairs Program, the Fields Centre for Quantitative Analysis and Modelling and gifts by Adobe. The first author is supported by an NSERC Vanier Scholarship and an Adobe Fellowship. The four middle authors were supported by the 2020 Fields Undergraduate Summer Research Program.</p>
+
+<p>We acknowledge the authors of the 3D models used throughout this paper: MakerBot (Fig. 1, CC BY 4.0), HQ3DMOD (Figs. 6 and 19, TurboSquid 3D Standard Model License), Freme Minskib (Fig. 7, CC BY-NC 4.0), 3Demon (Fig. 9, CC BY-NC-SA 4.0), Reality_3D (Fig. 11, CC BY 4.0), Alex (Fig. 14, CC BY-NC-SA 4.0), Falha Tecnologica (Fig. 18, TurboSquid 3D Standard Model License), LeFabShop (Fig. 16, CC BY-NC 4.0), The Database Center for Life Science (Fig. 15, CC BY-SA 2.1) and Gijs (inset in Section 3.5, CC BY-NC 4.0).</p>
+
+<p>We are grateful to the anonymous peer reviewers for their in- sightful suggestions. We would especially like to thank Reviewer #3 for inspiring the shockwave-based impact projection in Section 3.3.
+We would also like to thank Chris Wojtan, David Hahn and Klint Qinami for early experiments and discussions of sparse-norm frac- ture models; Eitan Grinspun, David I.W. Levin, Oded Stein and Jackson Phillips for insightful conversations; Rinat Abdrashitov for providing an implementation of his algorithm mentioned in Sec- tion 3.6; Qingnan Zhou for providing the 3D models used in Fig. 5; Xuan Dam, John Hancock and all the University of Toronto DCS staff that kept our lab running during the hardest of times.
 </p>
 
 </body>
