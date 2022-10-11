@@ -1,6 +1,0 @@
-numpy
-tetgen
-scikit-image
-polyscope
-scipy
-gpytoolbox==0.0.1
