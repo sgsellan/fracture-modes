@@ -9,11 +9,18 @@ To install this library, start by cloning this repository
 ```bash
 git clone --recursive https://github.com/sgsellan/fracture-modes.git
 ```
-Create a [`conda` environment](https://docs.conda.io/projects/conda/en/latest/index.html)
+Create a [`conda` environment](https://docs.conda.io/projects/conda/en/latest/index.html)\*
 ```bash
 conda create -n fracture-modes python=3.9
 conda activate fracture-modes
 ```
+> \*_for Apple Silicon (M1/M2) users, the igl, scikit-sparse, and tetgen conda packages are currently not available for arm64. To ensure that you create a x86_64 environment use instead_
+> ```
+> CONDA_SUBDIR=osx-64 conda create -n fracture-modes python=3.9
+> conda activate fracture-modes
+> conda config --env --set subdir osx-64  # make sure that conda commands in this environment use intel packages
+> ```
+
 Then, install all dependencies:
 ```bash
 python -m pip install -r requirements.txt
