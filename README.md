@@ -14,7 +14,7 @@ Create a [`conda` environment](https://docs.conda.io/projects/conda/en/latest/in
 conda create -n fracture-modes python=3.9
 conda activate fracture-modes
 ```
-> \*_for Apple Silicon (M1/M2) users, igl and scikit-sparse conda packages are currently not available for arm64. To ensure that you create a x86_64 environment use instead_
+> \*_for Apple Silicon (M1/M2) users, the igl, scikit-sparse, and tetgen conda packages are currently not available for arm64. To ensure that you create a x86_64 environment use instead_
 > ```
 > CONDA_SUBDIR=osx-64 conda create -n fracture-modes python=3.9
 > conda activate fracture-modes
