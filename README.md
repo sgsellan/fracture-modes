@@ -17,8 +17,7 @@ conda activate fracture-modes
 Then, install all dependencies:
 ```bash
 python -m pip install -r requirements.txt
-conda install -c conda-forge igl
-conda install -c conda-forge scikit-sparse
+conda install -c conda-forge igl scikit-sparse tetgen
 ```
 Finally, obtain a (free if you're academic) mosek licence [here](https://www.mosek.com/products/academic-licenses/), and install it as a python package:
 ```bash
