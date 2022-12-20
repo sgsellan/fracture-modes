@@ -11,7 +11,6 @@ import igl
 from . explode_mesh import explode_mesh
 from . conic_solve import conic_solve
 from . massmatrix_tets import massmatrix_tets
-from . sparse_sqrt import sparse_sqrt
 from . tictoc import tic, toc
 
 
@@ -42,8 +41,6 @@ def compute_fracture_modes(vertices,elements,parameters):
     tet_to_vertex_matrix_full = kron(blockdiag_kron,tet_to_vertex_matrix,format='csc')
     laplacian_exploded = igl.cotmatrix(exploded_vertices,exploded_elements)
     massmatrix_exploded = massmatrix_tets(exploded_vertices,exploded_elements)
-    Q = kron(blockdiag_kron,laplacian_exploded,format='csc')
-    R = coo_matrix(sparse_sqrt(-Q))
     M = kron(blockdiag_kron,massmatrix_exploded,format='csc')
 
    
@@ -56,8 +53,6 @@ def compute_fracture_modes(vertices,elements,parameters):
 
     # We convert everything into per-tet quantities
     UU = tet_to_vertex_matrix_full.T @ UU
-    Q = coo_matrix(tet_to_vertex_matrix_full.T @ Q @ tet_to_vertex_matrix_full)
-    R = coo_matrix(sparse_sqrt(-Q))
     M = coo_matrix(tet_to_vertex_matrix_full.T @ M @ tet_to_vertex_matrix_full)
     discontinuity_matrix_full = coo_matrix(discontinuity_matrix_full @ tet_to_vertex_matrix_full)
 
