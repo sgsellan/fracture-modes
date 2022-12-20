@@ -7,7 +7,7 @@ Aravind Ramakrishnan, Yuchuan Yang and Alec Jacobson and the *NeurIPS Datasets &
 
 To install this library, start by cloning this repository 
 ```bash
-git clone --recursive https://github.com/sgsellan/fracture-modes.git
+git clone https://github.com/sgsellan/fracture-modes.git
 ```
 Create a [`conda` environment](https://docs.conda.io/projects/conda/en/latest/index.html)\*
 ```bash
